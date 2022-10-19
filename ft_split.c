@@ -15,21 +15,21 @@
 int	countstr(char const *s, char c)
 {
 	int	i;
-	int	giacontato;
+	int	count;
 	int	countstr;
 
 	i = 0;
-	giacontato = 0;
+	count = 0;
 	countstr = 1;
 	while (s[i] != '\0')
 	{
-		if (s[i] != c && giacontato == 0)
+		if (s[i] != c && count == 0)
 		{
 			countstr++;
-			giacontato = 1;
+			count = 1;
 		}
 		else if (s[i] == c)
-			giacontato = 0;
+			count = 0;
 		i++;
 	}
 	return (countstr);
@@ -42,6 +42,8 @@ char	*newstring(char const *s, int start, int finish)
 
 	i = 0;
 	newstring = malloc(sizeof(char) * (finish - start + 1));
+	if (!newstring)
+		return (NULL);
 	while (start < finish)
 	{
 		newstring[i] = s[start];
@@ -71,7 +73,7 @@ char	**ft_split(char const *s, char c)
 			a = i;
 		else if ((s[i] == c || i == ft_strlen(s)) && a >= 0)
 		{
-			split[j] = newstring(s, a, i);
+			split[j] = newstring(s, a, (int)i);
 			j++;
 			a = -1;
 		}

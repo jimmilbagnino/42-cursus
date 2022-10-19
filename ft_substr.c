@@ -9,28 +9,25 @@
 /*   Updated: 2022/10/07 14:56:55 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	//const char 	*s1;
-	
-	//s1 = s;
-	substr = malloc(sizeof(substr) * (ft_strlen(s) - start));
-	if (substr == NULL)
+	size_t	i;
+
+	i = 0;
+	if (start > ft_strlen(s))
+		len = 0;
+	if (len > (ft_strlen(s) - start))
+		len = ft_strlen(s) - start;
+	substr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!substr && !s)
 		return (NULL);
-	substr = ft_memcpy(substr, &s[start], len);
+	while (s[start] != '\0' && i < len)
+	{
+		substr[i++] = s[start++];
+	}
+	substr[i] = '\0';
 	return (substr);
 }
-/*
-int main()
-{
-	char a[] = "ciaomario";
-	char *b; 
-	b = ft_substr(a, 0, 2);
-	printf("%s", b);
-	
-}*/
-//ft_substr(str, 0, 10)

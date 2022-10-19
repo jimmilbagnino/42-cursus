@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int	ft_checkchar (char const c, char const *str)
+int	ft_checkchar(char const c, char const *str)
 {
-	int	i;
-	
+	size_t	i;
+
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -26,29 +26,25 @@ int	ft_checkchar (char const c, char const *str)
 	return (0);
 }
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*scopy;
-	int	i;
-	int	j;
-	int	posFin;
-	
+	int		i;
+	int		posfin;
+
 	i = 0;
-	j = 0;
-	posFin = ft_strlen(s1) - 1;
+	posfin = ft_strlen(s1) - 1;
 	while (ft_checkchar(s1[i], set) == 1)
 		i++;
-	while (ft_checkchar(s1[posFin], set) == 1)
-		posFin--;
-	scopy = malloc(sizeof(char) * (posFin - i + 1));
+	while (ft_checkchar(s1[posfin], set) == 1)
+		posfin--;
+	if ((posfin - i) > (int)ft_strlen(s1))
+		scopy = (char *)malloc(sizeof(char) * (1));
+	else
+		scopy = (char *)malloc(sizeof(char) * (posfin - i + 2));
 	if (!scopy)
 		return (NULL);
-	while (i <= posFin)
-	{
-		scopy[j] = s1[i];
-		j++;
-		i++;
-	}
-	scopy[j] = '\0';
+	ft_memcpy(scopy, &s1[i], posfin - i + 1);
+	scopy[posfin - i + 2] = '\0';
 	return (scopy);
 }

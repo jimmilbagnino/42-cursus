@@ -9,11 +9,11 @@
 /*   Updated: 2022/10/10 20:07:52 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 
-}
+}*/
 /*
 typedef struct s_list
 {

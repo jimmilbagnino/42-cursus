@@ -14,9 +14,9 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char 	*s;
+	char	*s;
 	int		i;
-	
+
 	s = ft_itoa(n);
 	i = 0;
 	while (s[i] != '\0')
