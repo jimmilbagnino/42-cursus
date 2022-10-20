@@ -12,43 +12,51 @@
 
 #include "libft.h"
 
-int	countstr(char const *s, char c)
+int	countwords(char const *s, char c)
 {
-	int	i;
 	int	count;
-	int	countstr;
+	int	i;
+	int	a;
 
-	i = 0;
 	count = 0;
-	countstr = 1;
-	while (s[i] != '\0')
+	i = 0;
+	a = 0;
+	while (s[i])
 	{
-		if (s[i] != c && count == 0)
+		if (s[i] != c && a == 0)
 		{
-			countstr++;
-			count = 1;
+			count++;
+			a = 1;
 		}
 		else if (s[i] == c)
-			count = 0;
+			a = 0;
 		i++;
 	}
-	return (countstr);
+	return (count);
 }
 
-char	*newstring(char const *s, int start, int finish)
+char	*ft_create_string(char const *s, char c, int start)
 {
 	char	*newstring;
 	int		i;
+	int		startcpy;
 
 	i = 0;
-	newstring = malloc(sizeof(char) * (finish - start + 1));
+	startcpy = start;
+	while (s[start] != c && s[start] != '\0')
+	{
+		i++;
+		start++;
+	}
+	newstring = malloc (sizeof(char) * i + 1);
+	i = 0;
 	if (!newstring)
 		return (NULL);
-	while (start < finish)
+	while (s[startcpy] != c && s[startcpy] != '\0')
 	{
-		newstring[i] = s[start];
-		start++;
+		newstring[i] = s[startcpy];
 		i++;
+		startcpy++;
 	}
 	newstring[i] = '\0';
 	return (newstring);
@@ -56,29 +64,29 @@ char	*newstring(char const *s, int start, int finish)
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	int		a;
 	char	**split;
+	int		i;
+	int		j;
+	int		a;
 
-	split = malloc((sizeof(char *) * (countstr(s, c) + 1)));
-	if (!s || !split)
+	split = (char **)malloc(sizeof(char *) * (countwords(s, c) + 1));
+	if (!split)
 		return (NULL);
 	i = 0;
 	j = 0;
-	a = -1;
-	while (i <= ft_strlen(s))
+	a = 0;
+	while (s[i])
 	{
-		if (s[i] != c && a < 0)
-			a = i;
-		else if ((s[i] == c || i == ft_strlen(s)) && a >= 0)
+		if (s[i] != c && a == 0)
 		{
-			split[j] = newstring(s, a, (int)i);
+			split[j] = ft_create_string(s, c, i);
 			j++;
-			a = -1;
+			a = 1;
 		}
+		if (s[i] == c)
+			a = 0;
 		i++;
 	}
-	split[j] = 0;
+	split[j] = NULL;
 	return (split);
 }

@@ -16,9 +16,14 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ar;
 
-	if (nmemb == 0 || size == 0 || nmemb > SIZE_MAX / size)
-		return (NULL);
-	ar = malloc(nmemb * size);
-	ft_memset(ar, 0, nmemb * size);
+	if (size == 0 || nmemb == 0)
+		ar = malloc(1);
+	else
+	{
+		ar = malloc(nmemb * size);
+		if (nmemb > SIZE_MAX / size || !ar)
+			return (NULL);
+		ft_memset(ar, 0, nmemb * size);
+	}
 	return (ar);
 }
