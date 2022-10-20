@@ -12,39 +12,76 @@
 
 #include "libft.h"
 
-int	ft_checkchar(char const c, char const *str)
+static size_t	count_c_s(char const *s1, char const *set)
 {
 	size_t	i;
+	size_t	j;
+	size_t	res;
 
 	i = 0;
-	while (str[i] != '\0')
+	res = 0;
+	j = 0;
+	while (set[j])
 	{
-		if (c == str[i])
-			return (1);
-		i++;
+		if (s1[i] == set[j])
+		{
+			res++;
+			j = 0;
+			i++;
+		}
+		else
+			j++;
 	}
-	return (0);
+	return (res);
+}
+
+size_t	count_c_e(char const *s1, char const *set)
+{
+	size_t	i;
+	size_t	j;
+	size_t	res;
+
+	j = 0;
+	i = ft_strlen(s1) - 1;
+	res = ft_strlen(s1);
+	while (set[j])
+	{
+		if (s1[i] == set[j])
+		{
+			res--;
+			j = 0;
+			i--;
+		}
+		else
+			j++;
+	}
+	return (res);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char	*scopy;
-	int		i;
-	int		posfin;
+	char		*newstr;
+	size_t		i;
+	size_t		last;
+	size_t		first;
 
 	i = 0;
-	posfin = ft_strlen(s1) - 1;
-	while (ft_checkchar(s1[i], set) == 1)
-		i++;
-	while (ft_checkchar(s1[posfin], set) == 1)
-		posfin--;
-	if ((posfin - i) > (int)ft_strlen(s1))
-		scopy = (char *)malloc(sizeof(char) * (1));
-	else
-		scopy = (char *)malloc(sizeof(char) * (posfin - i + 2));
-	if (!scopy)
+	first = count_c_s(s1, set);
+	last = count_c_e(s1, set);
+	if (s1[first] == '\0')
+	{
+		first = 0;
+		last = 0;
+	}
+	newstr = (char *) malloc(sizeof(char) * (last - first + 1));
+	if (!newstr)
 		return (NULL);
-	ft_memcpy(scopy, &s1[i], posfin - i + 1);
-	scopy[posfin - i + 2] = '\0';
-	return (scopy);
+	while (first < last)
+	{
+		newstr[i] = s1[first];
+		i++;
+		first++;
+	}
+	newstr[i] = '\0';
+	return (newstr);
 }
