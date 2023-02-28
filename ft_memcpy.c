@@ -3,23 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 11:47:58 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/04 11:53:56 by rgalata          ###   ########.fr       */
+/*   Created: 2023/02/28 12:34:35 by rgalata           #+#    #+#             */
+/*   Updated: 2023/02/28 12:46:06 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t length)
 {
-	size_t	i;
+	size_t		i;
+	char		*dest_ptr;
+	const char	*src_ptr;
 
 	i = 0;
-	while (i < n)
+	if (!dest && !src)
+		return (NULL);
+	dest_ptr = (char *) dest;
+	src_ptr = (const char *) src;
+	while (i < length)
 	{
-		((char *)dest)[i] = ((char *)src)[i];
+		dest_ptr[i] = src_ptr[i];
 		i++;
 	}
 	return (dest);
