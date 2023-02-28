@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 11:30:01 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/04 11:30:03 by rgalata          ###   ########.fr       */
+/*   Created: 2023/02/28 11:53:03 by rgalata           #+#    #+#             */
+/*   Updated: 2023/02/28 12:04:44 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+int	ft_isprint(int argument)
 {
-	if (c >= 32 && c <= 126)
-		return (c);
-	return (0);
+	return (argument >= 32 && argument <= 126);
 }

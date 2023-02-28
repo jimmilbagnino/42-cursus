@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgalata <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 18:14:57 by rgalata           #+#    #+#             */
-/*   Updated: 2022/10/07 18:14:59 by rgalata          ###   ########.fr       */
+/*   Created: 2023/02/28 12:34:35 by rgalata           #+#    #+#             */
+/*   Updated: 2023/02/28 18:19:43 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,19 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;
-	size_t	b;
+	size_t	little_len;
 
 	i = 0;
-	b = 0;
-	if (!big)
-		return (NULL);
-	if (little[b] == 0)
-		return ((char *)big);
-	while (big[i] && i < len)
+	little_len = ft_strlen(little);
+	if (!little_len)
+		return ((char *) big);
+	if (!len)
+		return (0);
+	while (big[i] && i + little_len <= len)
 	{
-		b = 0;
-		while (big[i + b] == little[b] && i + b < len)
-		{
-			b++;
-			if (little[b] == '\0')
-			{
-				return ((char *)big + i);
-			}
-		}
+		if (!ft_strncmp(&big[i], little, little_len))
+			return ((char *) &big[i]);
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
