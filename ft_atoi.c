@@ -14,7 +14,7 @@
 
 static	int	iaws(int c)
 {
-	return ((c == '\n')	|| (c == '\v') || (c == '\f')
+	return ((c == '\n') || (c == '\v') || (c == '\f')
 		|| (c == '\t') || (c == '\r') || (c == ' '));
 }
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	nbr = 0;
 	nbr_len = 0;
-	while(iaws(*str))
+	while (iaws(*str))
 		str++;
 	if (*str == '-' || *str == '+')
 	{
@@ -46,7 +46,7 @@ int	ft_atoi(const char *str)
 	while (*str == '0')
 		str++;
 	while (ft_isdigit(*str))
-	{  
+	{
 		if (++nbr_len == 20)
 			return (ft_error(sign));
 		nbr = (*str - 48) + nbr * 10;
