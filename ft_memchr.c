@@ -6,7 +6,7 @@
 /*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:34:35 by rgalata           #+#    #+#             */
-/*   Updated: 2023/02/28 17:31:39 by rgalata          ###   ########.fr       */
+/*   Updated: 2023/02/28 19:50:44 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	*ft_memchr(const void *str, int argument, size_t size)
 {
 	unsigned char	*s;
-	size_t		i;
+	size_t			i;
 
 	i = 0;
 	s = (unsigned char *) str;

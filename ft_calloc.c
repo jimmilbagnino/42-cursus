@@ -6,7 +6,7 @@
 /*   By: rgalata <rgalata@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:34:35 by rgalata           #+#    #+#             */
-/*   Updated: 2023/02/28 18:39:48 by rgalata          ###   ########.fr       */
+/*   Updated: 2023/02/28 19:24:19 by rgalata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
+	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, nmemb * size);
 	return (ptr);
